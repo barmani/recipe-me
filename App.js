@@ -9,10 +9,11 @@ import CalendarScreen from './screens/CalendarScreen';
 
 const Tab = createBottomTabNavigator();
 
+
 const App = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator initialRouteName="Home">
+    <NavigationContainer style={styles.container}>
+      <Tab.Navigator initialRouteName="Recipes">
         <Tab.Screen 
           name="Recipes" 
           component={RecipesScreen}
@@ -45,7 +46,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  }
 });
