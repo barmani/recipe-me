@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 const MealsNav = () => {
   return (
     <Stack.Navigator>
-        <Stack.Screen name="Recipes" component={RecipesScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Recipes" component={RecipesScreen} />
         <Stack.Screen name="Meal" component={MealScreen} />
     </Stack.Navigator>
   );

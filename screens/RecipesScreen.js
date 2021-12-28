@@ -22,6 +22,7 @@ const RecipesScreen = props => {
                 data={MEALS}
                 renderItem={({item}) => <MealListItem title={item.title} id={item.id} navigation={props.navigation} />}
                 style={styles.mealList}
+                numColumns={2}
             />
         </View>
     );
