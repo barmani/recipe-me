@@ -12,15 +12,21 @@ const styles = StyleSheet.create({
     }
 });
 
-const Meal = (props) => {
-    console.log(props);
+const MealListItem = (props) => {
+    
+    const handleNavigate = () => {
+        props.navigation.navigate('Meal', {
+            mealId: props.id
+        });
+    };
+
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleNavigate} >
             <View style={styles.mealContainer}>
                 <Text>{props.title}</Text>
             </View>
         </TouchableOpacity>
-    )
+    );
 };
 
-export default Meal;
+export default MealListItem;
