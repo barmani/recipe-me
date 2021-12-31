@@ -18,8 +18,9 @@ const BottomNav = () => {
           name="RecipeNav" 
           component={RecipeNav}
           options={{
+            tabBarLabel: "Recipes",
             tabBarIcon: () => <Ionicons name="list-circle-outline" size={30} />,
-            headerShown: false
+            headerShown: false,
           }}
         />
         <Tab.Screen 

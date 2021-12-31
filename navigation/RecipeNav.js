@@ -1,8 +1,15 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Button } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import RecipesScreen from '../screens/RecipesScreen';
 import RecipeScreen from '../screens/RecipeScreen';
 import AddRecipeScreen from '../screens/AddRecipeScreen';
+
+const styles = StyleSheet.create({
+    plusButton: {
+        paddingLeft: 30
+    }
+});
 
 const Stack = createNativeStackNavigator();
 
@@ -15,12 +22,14 @@ const RecipeNav = (props) => {
                 component={RecipesScreen} 
                 options={{
                     headerRight: () => (
-                        <Button 
-                            title="+"
+                        <TouchableOpacity 
                             onPress={() => {
                                 props.navigation.navigate('Add Recipe')
                             }}
-                        />
+                            style={styles.plusButton}
+                        >
+                            <Ionicons name="add" style={{ color: "#5FC9F8" }} size={30} />
+                        </TouchableOpacity>
                     )
                 }}
             />
