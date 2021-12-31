@@ -4,7 +4,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 const styles = StyleSheet.create({
     mealItem: {
         flex: 1,
-        margin: 15,
+        margin: 10,
         height: 150,
         borderRadius: 10,
         elevation: 5

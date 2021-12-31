@@ -7,11 +7,18 @@ const styles = StyleSheet.create({
     mealContainer: {
         width: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginRight: '10%'
     },
     title: {
-        fontSize: 22,
+        fontSize: 28,
         fontWeight: 'bold'
+    },
+    ingredientsText: {
+        fontSize: 18
+    },
+    stepText: {
+        fontSize: 18
     },
     displayItem: {
         marginVertical: 15
@@ -22,17 +29,30 @@ const MealScreen = (props) => {
     const mealId = props.route.params.mealId;
     const meal = MEALS.find(item => item.id === mealId);
     return (
-        <View style={styles.mealContainer}>
-            <View style={styles.displayItem}>
-                <Text style={styles.title}>{meal.title}</Text>
+        <ScrollView>
+            <View style={styles.mealContainer}>
+                <View style={styles.displayItem}>
+                    <Text style={styles.title}>{meal.title}</Text>
+                </View>
+                <View style={styles.displayItem}>
+                    {meal.ingredients.map(ingredient => <Text style={styles.ingredientsText} key={ingredient}>{ingredient}</Text>)}
+                </View>
+                <View style={styles.displayItem}>
+                    {meal.steps.map(step => {
+                        return (
+                            <View style={{padding: 10}}>
+                                <Text 
+                                    style={styles.stepText} 
+                                    key={step}
+                                >
+                                    {step}
+                                </Text>
+                            </View>
+                        )
+                    })}
+                </View>  
             </View>
-            <View style={styles.displayItem}>
-                {meal.ingredients.map(ingredient => <Text key={ingredient}>{ingredient}</Text>)}
-            </View>
-            <View style={styles.displayItem}>
-                {meal.steps.map(step => <Text key={step}>{step}</Text>)}
-            </View>
-        </View>
+        </ScrollView>
     )
 }
 
