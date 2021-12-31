@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet, FlatList } from "react-native";
 import { MEALS } from "../data/dummy-data";
-import MealListItem from "../components/MealListItem";
+import RecipeListItem from "../components/RecipeListItem";
 
 const styles = StyleSheet.create({
     screen: {
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
     },
-    mealList: {
+    recipeList: {
         width: '95%'
     }
 });
@@ -20,8 +20,8 @@ const RecipesScreen = props => {
         <View style={styles.screen}>
             <FlatList
                 data={MEALS}
-                renderItem={({item}) => <MealListItem title={item.title} id={item.id} navigation={props.navigation} />}
-                style={styles.mealList}
+                renderItem={({item}) => <RecipeListItem title={item.title} id={item.id} navigation={props.navigation} />}
+                style={styles.recipeList}
                 numColumns={2}
             />
         </View>

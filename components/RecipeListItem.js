@@ -2,14 +2,14 @@ import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
 const styles = StyleSheet.create({
-    mealItem: {
+    recipeItem: {
         flex: 1,
         margin: 10,
         height: 150,
         borderRadius: 10,
         elevation: 5
     },
-    mealContainer: {
+    recipeContainer: {
         flex: 1,
         backgroundColor: '#c3d',
         borderRadius: 10,
@@ -21,29 +21,29 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'flex-end'
     },
-    mealTitle: {
+    recipeTitle: {
         fontSize: 22,
         textAlign: 'right'
     }
 });
 
-const MealListItem = (props) => {
+const RecipeListItem = (props) => {
     
     const handleNavigate = () => {
-        props.navigation.navigate('Meal', {
+        props.navigation.navigate('Recipe', {
             mealId: props.id
         });
     };
 
     return (
-        <View style={styles.mealItem}>
+        <View style={styles.recipeItem}>
             <TouchableOpacity style={{flex: 1}} onPress={handleNavigate} >
-                <View style={styles.mealContainer}>
-                    <Text style={styles.mealTitle}>{props.title}</Text>
+                <View style={styles.recipeContainer}>
+                    <Text style={styles.recipeTitle}>{props.title}</Text>
                 </View>
             </TouchableOpacity>
         </View>
     );
 };
 
-export default MealListItem;
+export default RecipeListItem;

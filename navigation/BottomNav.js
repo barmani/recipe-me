@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import GroceryScreen from '../screens/GroceryScreen';
-import MealsNav from './MealsNav';
+import RecipeNav from './RecipeNav';
 import CalendarScreen from '../screens/CalendarScreen';
 
 const Tab = createBottomTabNavigator();
@@ -13,10 +13,10 @@ const Tab = createBottomTabNavigator();
 const BottomNav = () => {
   return (
     <NavigationContainer style={styles.container}>
-      <Tab.Navigator initialRouteName="Recipes">
+      <Tab.Navigator initialRouteName="RecipeNav">
         <Tab.Screen 
-          name="Recipes" 
-          component={MealsNav}
+          name="RecipeNav" 
+          component={RecipeNav}
           options={{
             tabBarIcon: () => <Ionicons name="list-circle-outline" size={30} />,
             headerShown: false

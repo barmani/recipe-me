@@ -1,10 +1,9 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { MEALS } from "../data/dummy-data";
-import MealsNav from "../navigation/MealsNav";
 
 const styles = StyleSheet.create({
-    mealContainer: {
+    recipeContainer: {
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
@@ -25,12 +24,12 @@ const styles = StyleSheet.create({
     }
 });
 
-const MealScreen = (props) => {
+const RecipeScreen = (props) => {
     const mealId = props.route.params.mealId;
     const meal = MEALS.find(item => item.id === mealId);
     return (
         <ScrollView>
-            <View style={styles.mealContainer}>
+            <View style={styles.recipeContainer}>
                 <View style={styles.displayItem}>
                     <Text style={styles.title}>{meal.title}</Text>
                 </View>
@@ -56,4 +55,4 @@ const MealScreen = (props) => {
     )
 }
 
-export default MealScreen;
+export default RecipeScreen;
