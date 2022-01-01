@@ -1,48 +1,38 @@
 import React, { useState } from "react";
-import Feather from 'react-native-vector-icons/Feather';
-import { View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
+import RecipeInput from "../components/RecipeInput";
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center'
-    },
-    inputContainer: {
-        width: '90%',
-        borderWidth: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginVertical: 15,
-        padding: 10
-    },
-    input: {
-        width: '90%',
-        height: 30
     }
 });
 
-const RecipeInput = (props) => {
-    return (
-        <View style={styles.inputContainer}>
-            <TextInput
-                style={styles.input}
-                onChangeText={props.onChangeText}
-                value={props.value}
-                placeholder={props.placeholder}
-            />
-            { props.value.length > 0 && (
-                <TouchableOpacity onPress={props.onClearText}>
-                    <Feather name="x-circle" size={30} />
-                </TouchableOpacity>
-            )}
-        </View>
-    )
-}
-
 const AddRecipeScreen = (props) => {
     const [title, setTitle] = useState('');
-    const [ingredients, setIngredients] = useState('');
-    const [steps, setSteps] = useState('');
+    const [ingredient, setIngredient] = useState('');
+    const [ingredients, setIngredients] = useState([]);
+    const [step, setStep] = useState('');
+    const [steps, setSteps] = useState([]);
+
+    const handleIngredientSubmit = (e) => {
+        const newIngredient = e.nativeEvent.text;
+        console.log(newIngredient);
+        if (newIngredient && newIngredient.length > 0) {
+            setIngredients([...ingredients, newIngredient]);
+            setIngredient('');
+        }
+    }
+
+    const handleStepSubmit = (e) => {
+        const newStep = e.nativeEvent.text;
+        if (newStep && newStep.length > 0) {
+            setSteps([...steps, newStep]);
+            setStep('');
+        }
+    }
+
     return (
         <View style={styles.container}>
             <RecipeInput 
@@ -52,17 +42,25 @@ const AddRecipeScreen = (props) => {
                 placeholder="Title"
             />
             <RecipeInput 
-                onChangeText={setIngredients}
-                onClearText={() => setIngredients('')}
-                value={ingredients}
-                placeholder="Ingredients"
+                onChangeText={setIngredient}
+                onClearText={() => setIngredient('')}
+                value={ingredient}
+                placeholder="Add an ingredient"
+                onSubmit={handleIngredientSubmit}
             />
+            {
+                ingredients.map(item => <Text key={item}>{item}</Text>)
+            }
             <RecipeInput 
-                onChangeText={setSteps}
-                onClearText={() => setSteps('')}
-                value={steps}
-                placeholder="Steps"
+                onChangeText={setStep}
+                onClearText={() => setStep('')}
+                value={step}
+                placeholder="Add steps here"
+                onSubmit={handleStepSubmit}
             />
+            {
+                steps.map(item => <Text key={item}>{item}</Text>)
+            }
         </View>
     )
 };
