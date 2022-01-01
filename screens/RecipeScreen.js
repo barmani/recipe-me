@@ -39,10 +39,9 @@ const RecipeScreen = (props) => {
                 <View style={styles.displayItem}>
                     {meal.steps.map(step => {
                         return (
-                            <View style={{padding: 10}}>
+                            <View key={step} style={{padding: 10}}>
                                 <Text 
-                                    style={styles.stepText} 
-                                    key={step}
+                                    style={styles.stepText}
                                 >
                                     {step}
                                 </Text>
