@@ -16,6 +16,9 @@ const styles = StyleSheet.create({
 });
 
 const RecipesScreen = props => {
+    if (props.route.params?.newRecipe) {
+        MEALS.push(props.route.params.newRecipe)
+    }
     return (
         <View style={styles.screen}>
             <FlatList
