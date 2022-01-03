@@ -1,9 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, Button } from 'react-native';
 import RecipesScreen from '../screens/RecipesScreen';
 import RecipeScreen from '../screens/RecipeScreen';
 import AddRecipeScreen from '../screens/AddRecipeScreen';
+import EditRecipeScreen from '../screens/EditRecipeScreen';
 
 const styles = StyleSheet.create({
     plusButton: {
@@ -14,7 +15,6 @@ const styles = StyleSheet.create({
 const Stack = createNativeStackNavigator();
 
 const RecipeNav = (props) => {
-    console.log(props)
     return (
         <Stack.Navigator>
             <Stack.Screen 
@@ -33,8 +33,29 @@ const RecipeNav = (props) => {
                     )
                 }}
             />
-            <Stack.Screen name="Recipe" component={RecipeScreen} />
-            <Stack.Screen name="Add Recipe" component={AddRecipeScreen} />
+            <Stack.Screen 
+                name="Recipe" 
+                component={RecipeScreen}
+                options={({navigation, route}) => ({
+                    headerRight: () => {
+                        return (
+                            <Button 
+                                title="Edit"
+                                onPress={() => {
+                                    navigation.navigate('Edit Recipe', {
+                                        mealTitle: route.params.mealTitle
+                                    })
+                                }}
+                            />
+                        )
+                    }
+                })}
+            />
+            <Stack.Screen 
+                name="Add Recipe" 
+                component={AddRecipeScreen} 
+            />
+            <Stack.Screen name="Edit Recipe" component={EditRecipeScreen} />
         </Stack.Navigator>
     );
 }

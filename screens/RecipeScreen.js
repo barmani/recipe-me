@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { MEALS } from "../data/dummy-data";
 
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
 const RecipeScreen = (props) => {
     const mealTitle = props.route.params.mealTitle;
     const meal = MEALS.find(item => item.title === mealTitle);
+
     return (
         <ScrollView>
             <View style={styles.recipeContainer}>
