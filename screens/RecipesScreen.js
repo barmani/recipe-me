@@ -23,7 +23,7 @@ const RecipesScreen = props => {
         <View style={styles.screen}>
             <FlatList
                 data={MEALS}
-                renderItem={({item}) => <RecipeListItem title={item.title} id={item.id} navigation={props.navigation} />}
+                renderItem={({item}) => <RecipeListItem title={item.title} navigation={props.navigation} />}
                 style={styles.recipeList}
                 numColumns={2}
             />

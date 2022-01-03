@@ -31,7 +31,7 @@ const RecipeListItem = (props) => {
     
     const handleNavigate = () => {
         props.navigation.navigate('Recipe', {
-            mealId: props.id
+            mealTitle: props.title
         });
     };
 

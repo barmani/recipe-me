@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
 });
 
 const RecipeScreen = (props) => {
-    const mealId = props.route.params.mealId;
-    const meal = MEALS.find(item => item.id === mealId);
+    const mealTitle = props.route.params.mealTitle;
+    const meal = MEALS.find(item => item.title === mealTitle);
     return (
         <ScrollView>
             <View style={styles.recipeContainer}>
