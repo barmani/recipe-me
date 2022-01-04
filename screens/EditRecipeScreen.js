@@ -12,7 +12,7 @@ const EditRecipeScreen = (props) => {
     const mealTitle = props.route.params.mealTitle;
     const currentRecipe = MEALS.find(meal => meal.title === mealTitle);
 
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState(currentRecipe.title);
     return (
         <View>
             <RecipeInput 

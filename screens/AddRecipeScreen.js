@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity, Pressable } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import RecipeInput from "../components/RecipeInput";
+import EditableTextInput from "../components/EditableTextInput";
 import Meal from "../models/meal";
+
 import { MEALS } from "../data/dummy-data";
 
 const styles = StyleSheet.create({
@@ -80,7 +82,7 @@ const AddRecipeScreen = (props) => {
                 onSubmit={handleIngredientSubmit}
             />
             {
-                ingredients.map(item => <Text key={item}>{item}</Text>)
+                ingredients.map(item => <EditableTextInput key={item} text={item}/>)
             }
             <RecipeInput 
                 onChangeText={setStep}
