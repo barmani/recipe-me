@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center'
     },
+    listItems: {
+        width: '90%'
+    },
     submitContainer: {
         backgroundColor: '#c3d',
         width: '90%',
@@ -81,9 +84,11 @@ const AddRecipeScreen = (props) => {
                 placeholder="Add an ingredient"
                 onSubmit={handleIngredientSubmit}
             />
+            <View style={styles.listItems}>
             {
                 ingredients.map(item => <EditableTextInput key={item} text={item}/>)
             }
+            </View>
             <RecipeInput 
                 onChangeText={setStep}
                 onClearText={() => setStep('')}
