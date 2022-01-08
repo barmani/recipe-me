@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import RecipeInput from "./RecipeInput";
 
 const styles = StyleSheet.create({
     container: {
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         justifyContent: 'center',
         alignItems: 'center'
-    }
+    },
 })
 
 
@@ -45,7 +46,7 @@ const EditableTextInput = (props) => {
                         <Text>Edit</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {}}>
+                <TouchableOpacity onPress={() => props.onDelete(props.text)}>
                     <View style={styles.deleteContainer}>
                         <Ionicons name="trash-outline" size={30} />
                         <Text>Delete</Text>
@@ -55,7 +56,9 @@ const EditableTextInput = (props) => {
         )
     }
 
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing, setIsEditing] = useState(false)
+    const [editedText, setEditedText] = useState(props.text)
+
     const swipeRef = useRef();
 
     const closeSwipeable = () => {
@@ -64,41 +67,37 @@ const EditableTextInput = (props) => {
 
     const editPressed = () => {
         closeSwipeable()
+        setIsEditing(true)
     }
 
-    return (
-        
-        <Swipeable
-            ref={swipeRef}
-            renderRightActions={RightSwipeActions}
-            onSwipeableRightOpen={() => {}}
-            rightThreshold={50}
-            overshootFriction={5}
-        >
-            <View style={styles.container}>
-                <Text>{props.text}</Text>
-            </View>
-        </Swipeable>
-                // {
-                //     !isEditing ? (
-                //         <View style={styles.container}>
-                //             <View>
-                //                 <Text>{props.text}</Text>
-                //             </View>
-                //         </View>
-                //     ) : (
-                //         <TextInput
-                //             style={styles.input}
-                //             onChangeText={props.onChangeText}
-                //             value={props.text}
-                //             placeholder={props.placeholder}
-                //             onFocus={() => {}}
-                //             onBlur={() => {}}
-                //             onSubmitEditing={props.onSubmit}
-                //         />
-                //     )
-                // }
-    )
+    const submitEdit = () => {
+        props.onEditSubmit(props.text, editedText)
+        setIsEditing(false)
+    }
+
+    if (!isEditing) {
+        return (
+            <Swipeable
+                ref={swipeRef}
+                renderRightActions={RightSwipeActions}
+                onSwipeableRightOpen={() => setIsEditing(false)}
+                rightThreshold={50}
+                overshootFriction={5}
+            >
+                <View style={styles.container}>
+                    <Text>{props.text}</Text>
+                </View>
+            </Swipeable>
+        )
+    } else {
+        return (
+            <RecipeInput
+                onChangeText={setEditedText}
+                value={editedText}
+                onSubmit={submitEdit}
+            />
+        )
+    }
 }
 
 export default EditableTextInput;

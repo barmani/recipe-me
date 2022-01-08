@@ -69,6 +69,23 @@ const AddRecipeScreen = (props) => {
         });
     }
 
+    const handleDeleteIngredient = (text) => {
+        setIngredients(ingredients.filter(item => item !== text))
+    }
+
+    const handleEditSubmit = (oldText, newText) => {
+        if (newText.length > 0) {
+            const idx = ingredients.indexOf(oldText)
+            if (idx >= 0) {
+                const ingredientsCopy = [...ingredients]
+                ingredientsCopy[idx] = newText
+                setIngredients(ingredientsCopy)
+            }
+        }
+    }
+
+
+
     return (
         <View style={styles.container}>
             <RecipeInput 
@@ -86,7 +103,7 @@ const AddRecipeScreen = (props) => {
             />
             <View style={styles.listItems}>
             {
-                ingredients.map(item => <EditableTextInput key={item} text={item}/>)
+                ingredients.map(item => <EditableTextInput key={item} text={item} onDelete={handleDeleteIngredient} onEditSubmit={handleEditSubmit} />)
             }
             </View>
             <RecipeInput 
