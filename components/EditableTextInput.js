@@ -9,12 +9,14 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         marginVertical: 5,
         borderWidth: 1,
-        borderColor: 'black'
+        borderColor: 'black',
+        backgroundColor: '#eee'
     },
     swipeContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        position: 'relative'
     },
     editContainer: {
         width: '100%',
